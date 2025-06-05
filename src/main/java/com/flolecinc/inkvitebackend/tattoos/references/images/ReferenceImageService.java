@@ -1,7 +1,7 @@
 package com.flolecinc.inkvitebackend.tattoos.references.images;
 
-import com.flolecinc.inkvitebackend.exceptions.FileReaderException;
-import com.flolecinc.inkvitebackend.exceptions.UnsupportedImageTypeException;
+import com.flolecinc.inkvitebackend.exceptions.files.FileReaderException;
+import com.flolecinc.inkvitebackend.exceptions.files.UnsupportedImageTypeException;
 import com.flolecinc.inkvitebackend.file.FileManager;
 import lombok.RequiredArgsConstructor;
 import org.apache.tika.Tika;

@@ -1,5 +1,6 @@
 package com.flolecinc.inkvitebackend.tattoos.requestforms;
 
+import com.flolecinc.inkvitebackend.tattoos.projects.TattooProject;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -14,11 +15,11 @@ public class RequestFormController {
     private RequestFormService requestFormService;
 
     @PostMapping("/{tattooArtistUsername}")
-    public ResponseEntity<String> handleRequestForm(
+    public ResponseEntity<TattooProject> handleRequestForm(
             @PathVariable String tattooArtistUsername,
             @RequestBody @Valid RequestFormDTO requestForm) {
-        requestFormService.handleRequestForm(tattooArtistUsername, requestForm);
-        return ResponseEntity.status(HttpStatus.CREATED).body("Tattoo project successfully created and saved");
+        TattooProject project = requestFormService.handleRequestForm(tattooArtistUsername, requestForm);
+        return ResponseEntity.status(HttpStatus.CREATED).body(project);
     }
 
 }

@@ -1,6 +1,6 @@
 package com.flolecinc.inkvitebackend.file;
 
-import com.flolecinc.inkvitebackend.exceptions.S3UploadException;
+import com.flolecinc.inkvitebackend.exceptions.files.S3UploadException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

@@ -1,6 +1,6 @@
 package com.flolecinc.inkvitebackend.tattoos.artists;
 
-import com.flolecinc.inkvitebackend.exceptions.TattooArtistNotFoundException;
+import com.flolecinc.inkvitebackend.exceptions.notfound.TattooArtistNotFoundException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

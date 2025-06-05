@@ -39,4 +39,10 @@ public class TattooClient {
         this.email = tattooClientDTO.getEmail();
     }
 
+    public TattooClient(String firstName, String lastName, String email) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+    }
+
 }

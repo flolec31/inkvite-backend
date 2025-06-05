@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>verification-email</title>
+    <style>
+        .code-box {
+            display: inline-block;
+            background-color: #ecebeb;
+            margin: 2px;
+            border-radius: 8px;
+            padding: 10px 15px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body style="margin: 0; padding: 0; background-color: #f4f4f4;">
+<div style="
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 20px;
+      background-color: #ffffff;
+      font-family: Arial, sans-serif;
+      color: #333333;
+    ">
+    <h2 style="color: rgb(7,124,141); font-size: 24px;">Confirme ta demande de rendez-vous avec <span th:text="${artist}">Tattoo
+        Artist</span> ! </h2>
+
+    <p style="font-size: 16px; line-height: 1.5;">
+        Plus qu'une étape pour valider ta demande de rendez-vous et transmettre ton formulaire à <b th:text="${artist}">Tattoo
+        Artist</b>.<br>
+        Pour cela, il te suffit de rentrer le code suivant dans l'application :
+    </p>
+
+    <h1 style="text-align: center">
+        <span class="code-box" th:text="${code1}">A</span><span class="code-box" th:text="${code2}">B</span><span class="code-box" style="margin-right: 15px" th:text="${code3}">C</span><span class="code-box" th:text="${code4}">D</span><span class="code-box" th:text="${code5}">E</span><span class="code-box" th:text="${code6}">F</span>
+    </h1>
+
+    <p style="font-size: 16px; line-height: 1.5;">
+        Merci et à bientôt ! <br>
+        L'équipe Inkvite
+    </p>
+
+    <img src="../inkvite-logo.png" th:src="${logoUrl}" alt="Inkvite Logo"
+         style="width: 250px; margin-top: 10px;"/>
+</div>
+</body>
+</html>

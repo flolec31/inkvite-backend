@@ -1,7 +1,7 @@
 package com.flolecinc.inkvitebackend.tattoos.requestforms;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.flolecinc.inkvitebackend.exceptions.TattooArtistNotFoundException;
+import com.flolecinc.inkvitebackend.exceptions.notfound.TattooArtistNotFoundException;
 import com.flolecinc.inkvitebackend.tattoos.projects.TattooProjectDTO;
 import com.flolecinc.inkvitebackend.tattoos.references.TattooReferenceDTO;
 import org.junit.jupiter.api.BeforeAll;
@@ -28,7 +28,6 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.verify;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(RequestFormController.class)
@@ -61,8 +60,7 @@ class RequestFormControllerTest {
         mockMvc.perform(MockMvcRequestBuilders.post("/api/tattoos/requests/{tattooArtistUsername}", ARTIST_USERNAME)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(jsonBody))
-                .andExpect(status().isCreated())
-                .andExpect(content().string("Tattoo project successfully created and saved"));
+                .andExpect(status().isCreated());
         verify(requestFormService).handleRequestForm(eq(ARTIST_USERNAME), requestFormCaptor.capture());
         RequestFormDTO requestForm = requestFormCaptor.getValue();
         assertEquals("John", requestForm.getIdentity().getFirstName());

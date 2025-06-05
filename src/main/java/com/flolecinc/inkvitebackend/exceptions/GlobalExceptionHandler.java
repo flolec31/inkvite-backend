@@ -1,5 +1,11 @@
 package com.flolecinc.inkvitebackend.exceptions;
 
+import com.flolecinc.inkvitebackend.exceptions.files.FileReaderException;
+import com.flolecinc.inkvitebackend.exceptions.files.S3UploadException;
+import com.flolecinc.inkvitebackend.exceptions.files.UnsupportedImageTypeException;
+import com.flolecinc.inkvitebackend.exceptions.notfound.RessourceNotFoundException;
+import com.flolecinc.inkvitebackend.exceptions.verificationcode.ExpiredVerificationCodeException;
+import com.flolecinc.inkvitebackend.exceptions.verificationcode.WrongVerificationCodeException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -23,8 +29,8 @@ public class GlobalExceptionHandler {
         return ResponseEntity.badRequest().body(errors);
     }
 
-    @ExceptionHandler(TattooArtistNotFoundException.class)
-    public ResponseEntity<Map<String, String>> handleTattooArtistNotFoundException(TattooArtistNotFoundException exception) {
+    @ExceptionHandler(RessourceNotFoundException.class)
+    public ResponseEntity<Map<String, String>> handleTattooArtistNotFoundException(RessourceNotFoundException exception) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body(createErrorBody(exception));
     }
@@ -56,6 +62,18 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(MaxUploadSizeExceededException.class)
     public ResponseEntity<Map<String, String>> handleMaxSizeException(MaxUploadSizeExceededException exception) {
         return ResponseEntity.status(HttpStatus.PAYLOAD_TOO_LARGE)
+                .body(createErrorBody(exception));
+    }
+
+    @ExceptionHandler(WrongVerificationCodeException.class)
+    public ResponseEntity<Map<String, String>> handleWrongVerificationCodeException(WrongVerificationCodeException exception) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(createErrorBody(exception));
+    }
+
+    @ExceptionHandler(ExpiredVerificationCodeException.class)
+    public ResponseEntity<Map<String, String>> handleExpiredVerificationCodeException(ExpiredVerificationCodeException exception) {
+        return ResponseEntity.status(HttpStatus.REQUEST_TIMEOUT)
                 .body(createErrorBody(exception));
     }
 

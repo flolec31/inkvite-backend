@@ -1,6 +1,6 @@
 package com.flolecinc.inkvitebackend.file;
 
-import com.flolecinc.inkvitebackend.exceptions.S3UploadException;
+import com.flolecinc.inkvitebackend.exceptions.files.S3UploadException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
