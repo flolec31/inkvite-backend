@@ -58,7 +58,7 @@ class RequestFormControllerTest {
         ArgumentCaptor<RequestFormDTO> requestFormCaptor = ArgumentCaptor.forClass(RequestFormDTO.class);
 
         // When & Then
-        mockMvc.perform(MockMvcRequestBuilders.post("/tattoos/requests/{tattooArtistUsername}", ARTIST_USERNAME)
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/tattoos/requests/{tattooArtistUsername}", ARTIST_USERNAME)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(jsonBody))
                 .andExpect(status().isCreated())
@@ -84,7 +84,7 @@ class RequestFormControllerTest {
         doThrow(new TattooArtistNotFoundException(ARTIST_USERNAME)).when(requestFormService).handleRequestForm(eq(ARTIST_USERNAME), any());
 
         // When & Then
-        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post("/tattoos/requests/{tattooArtistUsername}", ARTIST_USERNAME)
+        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post("/api/tattoos/requests/{tattooArtistUsername}", ARTIST_USERNAME)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(jsonBody))
                 .andExpect(status().isNotFound())
@@ -183,7 +183,7 @@ class RequestFormControllerTest {
     }
 
     private void invalidRequestHelper(String badJson, String... messages) throws Exception {
-        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post("/tattoos/requests/{tattooArtistId}", UUID.randomUUID())
+        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post("/api/tattoos/requests/{tattooArtistId}", UUID.randomUUID())
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(badJson))
                 .andExpect(status().isBadRequest())

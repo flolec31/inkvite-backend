@@ -6,6 +6,7 @@ import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.multipart.MaxUploadSizeExceededException;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -49,6 +50,12 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(S3UploadException.class)
     public ResponseEntity<Map<String, String>> handleS3UploadException(S3UploadException exception) {
         return ResponseEntity.status(HttpStatus.valueOf(exception.getStatusCode()))
+                .body(createErrorBody(exception));
+    }
+
+    @ExceptionHandler(MaxUploadSizeExceededException.class)
+    public ResponseEntity<Map<String, String>> handleMaxSizeException(MaxUploadSizeExceededException exception) {
+        return ResponseEntity.status(HttpStatus.PAYLOAD_TOO_LARGE)
                 .body(createErrorBody(exception));
     }
 

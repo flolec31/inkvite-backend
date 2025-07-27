@@ -68,7 +68,7 @@ class RequestFormIntegrationTest {
         artist = tattooArtistRepository.save(newArtist);
         // Handle new request form
         String jsonBody = IOUtils.toString(new ClassPathResource("request-form.json").getInputStream(), StandardCharsets.UTF_8);
-        mockMvc.perform(MockMvcRequestBuilders.post("/tattoos/requests/andrea_g")
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/tattoos/requests/andrea_g")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(jsonBody));
     }
