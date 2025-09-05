@@ -1,8 +1,8 @@
 package com.flolecinc.inkvitebackend.tattoos.references.images;
 
-import com.flolecinc.inkvitebackend.exceptions.FileReaderException;
-import com.flolecinc.inkvitebackend.exceptions.S3UploadException;
-import com.flolecinc.inkvitebackend.exceptions.UnsupportedImageTypeException;
+import com.flolecinc.inkvitebackend.exceptions.files.FileReaderException;
+import com.flolecinc.inkvitebackend.exceptions.files.S3UploadException;
+import com.flolecinc.inkvitebackend.exceptions.files.UnsupportedImageTypeException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package com.flolecinc.inkvitebackend.exceptions;
+package com.flolecinc.inkvitebackend.exceptions.files;
 
 public class UnsupportedImageTypeException extends RuntimeException {
 

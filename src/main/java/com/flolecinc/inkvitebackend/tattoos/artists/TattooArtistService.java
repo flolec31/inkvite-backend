@@ -1,6 +1,6 @@
 package com.flolecinc.inkvitebackend.tattoos.artists;
 
-import com.flolecinc.inkvitebackend.exceptions.TattooArtistNotFoundException;
+import com.flolecinc.inkvitebackend.exceptions.notfound.TattooArtistNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

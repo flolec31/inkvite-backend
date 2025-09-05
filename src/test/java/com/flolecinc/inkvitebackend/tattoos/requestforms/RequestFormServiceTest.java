@@ -18,6 +18,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.verify;
@@ -44,7 +45,7 @@ class RequestFormServiceTest {
     private static final String ARTIST_USERNAME = "artist_username";
 
     @Test
-    void handleNewRequestForm_nominal_servicesCalled() {
+    void handleRequestForm_nominal_servicesCalled() {
         // Given
         RequestFormDTO requestFormDTO = new RequestFormDTO();
         requestFormDTO.setIdentity(new TattooClientDTO());
@@ -56,12 +57,14 @@ class RequestFormServiceTest {
         when(tattooClientService.saveClient(any())).thenReturn(new TattooClient());
         TattooProject tattooProject = new TattooProject();
         when(tattooProjectService.bindEntitiesAndSaveProject(any(), any(), any())).thenReturn(tattooProject);
+        when(tattooProjectService.findById(tattooProject.getId())).thenReturn(tattooProject);
 
         // When
-        requestFormService.handleRequestForm(ARTIST_USERNAME, requestFormDTO);
+        TattooProject returnedProject = requestFormService.handleRequestForm(ARTIST_USERNAME, requestFormDTO);
 
         // Then
         verify(tattooReferenceService).bindReferencesToProjectAndSaveThem(any(), eq(tattooProject));
+        assertEquals(tattooProject, returnedProject);
     }
 
 }

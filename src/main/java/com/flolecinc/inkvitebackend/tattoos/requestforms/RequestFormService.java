@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -31,7 +30,7 @@ public class RequestFormService {
      * @param requestFormDTO The request form that the client filled and sent
      */
     @Transactional
-    public void handleRequestForm(String tattooArtistUsername, RequestFormDTO requestFormDTO) {
+    public TattooProject handleRequestForm(String tattooArtistUsername, RequestFormDTO requestFormDTO) {
         TattooArtist artist = tattooArtistService.retrieveTattooArtistFromUsername(tattooArtistUsername);
 
         TattooClient client = new TattooClient(requestFormDTO.getIdentity());
@@ -43,8 +42,10 @@ public class RequestFormService {
         List<TattooReference> references = requestFormDTO.getProjectDetails().getReferences()
                 .stream()
                 .map(TattooReference::new)
-                .collect(Collectors.toList());
+                .toList();
         tattooReferenceService.bindReferencesToProjectAndSaveThem(references, project);
+
+        return tattooProjectService.findById(project.getId());
     }
 
 }
