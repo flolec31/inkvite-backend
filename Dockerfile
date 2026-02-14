@@ -2,6 +2,12 @@
 FROM gradle:8.4.0-jdk17 AS build
 WORKDIR /app
 
+# Install Playwright dependencies
+RUN apt-get update && apt-get install -y \
+    libx11-xcb1 \
+    libasound2t64 \
+    && rm -rf /var/lib/apt/lists/*
+
 COPY . .
 
 RUN gradle bootJar --no-daemon
